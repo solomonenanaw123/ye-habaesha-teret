@@ -1,137 +1,138 @@
 import React, { useState, useMemo } from 'react';
-import './styles.css';
-import { Header } from './components/Header';
-import { StoryCard } from './components/StoryCard';
-import { StoryViewer } from './components/StoryViewer';
-import { DailySpecial } from './components/DailySpecial';
 import { stories } from './data/stories';
 import { Story } from './types';
-import { motion } from 'framer-motion';
-import { Filter, CalendarDays, Heart } from 'lucide-react';
-import { Toaster, toast } from 'sonner';
+import { Header } from './components/Header';
+import { DailySpecial } from './components/DailySpecial';
+import { StoryCard } from './components/StoryCard';
+import { StoryViewer } from './components/StoryViewer';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Search, Sparkles, Trophy } from 'lucide-react';
+import { Toaster } from 'sonner';
 
-const App: React.FC = () => {
+function App() {
   const [selectedStory, setSelectedStory] = useState<Story | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-  
-  // Calculate day of the year (1-365)
-  const today = new Date();
-  const startOfYear = new Date(today.getFullYear(), 0, 0);
-  const diff = (today.getTime() - startOfYear.getTime()) + ((startOfYear.getTimezoneOffset() - today.getTimezoneOffset()) * 60 * 1000);
-  const oneDay = 1000 * 60 * 60 * 24;
-  const dayOfYear = Math.floor(diff / oneDay);
-  
-  // Story of the day
-  const dailyStory = useMemo(() => {
-    return stories.find(s => s.dayOfYear === dayOfYear) || stories[0];
-  }, [dayOfYear]);
+  const [activeCategory, setActiveCategory] = useState<string>('ሁሉም');
 
-  // Filtered stories
+  const categories = ['ሁሉም', 'እንስሳት', 'ጥበብ', 'ጀግኖች', 'ተፈጥሮ'];
+
   const filteredStories = useMemo(() => {
-    return stories.filter(story => 
-      story.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      story.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      story.category.toLowerCase().includes(searchTerm.toLowerCase())
-    ).slice(0, 50); // Show top 50 matches for performance
-  }, [searchTerm]);
+    return stories.filter(story => {
+      const matchesSearch = story.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          story.content.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory = activeCategory === 'ሁሉም' || story.category === activeCategory;
+      return matchesSearch && matchesCategory;
+    });
+  }, [searchTerm, activeCategory]);
 
-  const handleStorySelect = (story: Story) => {
-    setSelectedStory(story);
-    if (story.dayOfYear === dayOfYear) {
-      toast.success('የዛሬው ተረት!', {
-        description: 'አስደሳች የንባብ ጊዜ ይሁንልህ!',
-      });
-    }
-  };
+  const todayStory = useMemo(() => {
+    const today = new Date();
+    const start = new Date(today.getFullYear(), 0, 0);
+    const diff = today.getTime() - start.getTime();
+    const oneDay = 1000 * 60 * 60 * 24;
+    const dayOfYear = Math.floor(diff / oneDay);
+    return stories.find(s => s.dayOfYear === (dayOfYear % 365) + 1) || stories[0];
+  }, []);
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] flex flex-col">
+    <div className="min-h-screen bg-[#FFFDF5] text-gray-900 font-sans pb-12 selection:bg-[#008855] selection:text-white">
       <Toaster position="top-center" richColors />
       
-      <Header onSearch={setSearchTerm} />
+      <Header />
 
-      <main className="container mx-auto px-4 py-8 flex-grow">
-        {!searchTerm && (
-          <DailySpecial story={dailyStory} onRead={handleStorySelect} />
-        )}
+      <main className="container mx-auto px-4 pt-28 max-w-7xl">
+        <DailySpecial story={todayStory} onClick={setSelectedStory} />
 
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 font-serif">
-              {searchTerm ? `ፍለጋ፦ "${searchTerm}"` : 'ሁሉንም ተረቶች'}
-            </h2>
-            <p className="text-gray-500 mt-1">
-              {searchTerm ? `${filteredStories.length} ተረቶች ተገኝተዋል` : '365 ቀናት - 365 ተረቶች'}
-            </p>
-          </div>
-          
-          <div className="flex gap-2 w-full sm:w-auto">
-            <button className="flex-1 sm:flex-none p-3 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors flex items-center justify-center">
-              <Filter className="h-5 w-5 text-gray-600 mr-2 sm:mr-0" />
-              <span className="sm:hidden">አጣራ</span>
-            </button>
-            <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 bg-[#008855] text-white rounded-xl font-bold shadow-md">
-              <CalendarDays className="h-5 w-5" /> የቀን መቁጠሪያ
-            </button>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredStories.map((story, index) => (
-            <motion.div
-              key={story.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05 }}
-            >
-              <StoryCard 
-                story={story} 
-                onClick={handleStorySelect} 
+        <div className="mt-16 mb-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div>
+              <div className="flex items-center gap-2 text-[#008855] font-black uppercase tracking-widest text-sm mb-2">
+                <Sparkles className="h-5 w-5 fill-current" />
+                <span>የተረቶች ማከማቻ</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight">
+                ተወዳጅ ተረቶችህን <br /> ፈልግና አንብብ
+              </h2>
+            </div>
+            
+            <div className="relative w-full md:w-96 group">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5 group-focus-within:text-[#008855] transition-colors" />
+              <input
+                type="text"
+                placeholder="ተረት ፈልግ..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-12 pr-4 py-4 bg-white border-4 border-white shadow-lg rounded-[2rem] focus:outline-none focus:ring-4 focus:ring-[#008855]/10 focus:border-[#008855]/20 transition-all text-lg font-medium"
               />
-            </motion.div>
-          ))}
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-3 mt-8">
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-8 py-3 rounded-2xl font-black text-sm transition-all shadow-md active:scale-95 ${
+                  activeCategory === cat
+                    ? 'bg-[#008855] text-white shadow-[#008855]/20 scale-105'
+                    : 'bg-white text-gray-500 hover:bg-gray-50'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
+
+        <motion.div 
+          layout
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredStories.slice(0, 30).map((story) => (
+              <StoryCard key={story.id} story={story} onClick={setSelectedStory} />
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
         {filteredStories.length === 0 && (
-          <div className="text-center py-20 bg-white rounded-3xl border border-dashed border-gray-200">
-            <div className="bg-gray-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Filter className="h-8 w-8 text-gray-400" />
+          <div className="text-center py-32 bg-white rounded-[3rem] border-4 border-dashed border-gray-100">
+            <div className="bg-gray-50 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+               <Search className="h-10 w-10 text-gray-300" />
             </div>
-            <h3 className="text-xl font-bold text-gray-800">ምንም ተረት አልተገኘም</h3>
-            <p className="text-gray-500 max-w-xs mx-auto">ሌላ ቃል ሞክር ወይም ሁሉንም ተረቶች ለመመልከት ፍለጋውን ባዶ አድርግ።</p>
+            <p className="text-2xl font-black text-gray-400 italic">ምንም ተረት አልተገኘም... ሌላ ቃል ይሞክሩ!</p>
+          </div>
+        )}
+
+        {filteredStories.length > 30 && (
+          <div className="mt-16 text-center">
+            <p className="text-gray-400 font-bold uppercase tracking-widest text-xs mb-6">እንኳን ደስ አላችሁ! 365 ተረቶች እዚህ አሉ።</p>
+            <div className="flex items-center justify-center gap-4 p-8 bg-yellow-50 rounded-[2.5rem] border-4 border-white shadow-xl max-w-md mx-auto">
+                <Trophy className="h-10 w-10 text-yellow-500" />
+                <span className="text-xl font-black text-gray-800">ለሁሉም ቀን የሚሆን ተረት አለን!</span>
+            </div>
           </div>
         )}
       </main>
 
-      {/* Footer */}
-      <footer className="bg-white border-t border-gray-100 py-12 mt-20">
+      <footer className="mt-24 py-12 bg-white border-t border-gray-100">
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-2 mb-6">
-             <div className="bg-[#008855] p-2 rounded-xl">
-                <Heart className="h-5 w-5 text-white fill-current" />
-             </div>
-             <span className="text-xl font-bold font-serif text-gray-800 tracking-tight">ተረት ተረት</span>
+            <div className="w-10 h-10 bg-[#008855] rounded-xl flex items-center justify-center shadow-lg">
+              <Sparkles className="h-6 w-6 text-white" />
+            </div>
+            <span className="text-2xl font-black text-gray-900">ተረት ተረት</span>
           </div>
-          <p className="text-gray-500 max-w-lg mx-auto mb-8">
-            ለኢትዮጵያ ህፃናት በየቀኑ አዳዲስና አስተማሪ ተረቶችን እናቀርባለን። ባህላችንን ለቀጣዩ ትውልድ እናስተላልፋለን።
-          </p>
-          <div className="flex justify-center gap-6 mb-8 text-sm">
-            <button className="text-gray-400 hover:text-[#008855] font-medium transition-colors">ስለ እኛ</button>
-            <button className="text-gray-400 hover:text-[#008855] font-medium transition-colors">የግላዊነት ፖሊሲ</button>
-            <button className="text-gray-400 hover:text-[#008855] font-medium transition-colors">አግኙን</button>
-          </div>
-          <div className="text-sm text-gray-400 border-t border-gray-50 pt-8 font-medium">
-            © 2026 ተረት ተረት - የኢትዮጵያ ህፃናት ተረቶች | በአማርኛ የተዘጋጀ
-          </div>
+          <p className="text-gray-400 font-medium">© 2026 ተረት ተረት - የኢትዮጵያ ህፃናት ተረቶች | በአማርኛ የተዘጋጀ</p>
         </div>
       </footer>
 
-      <StoryViewer 
-        story={selectedStory} 
-        onClose={() => setSelectedStory(null)} 
+      <StoryViewer
+        story={selectedStory}
+        onClose={() => setSelectedStory(null)}
       />
     </div>
   );
-};
+}
 
 export default App;

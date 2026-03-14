@@ -1,11 +1,12 @@
 import { Story } from '../types';
 
-const LION_IMAGE = "https://storage.googleapis.com/dala-prod-public-storage/generated-images/d014d5ac-f5b7-4ada-980f-d89b8b31bd04/lion-and-mouse-7f8e42b8-1773515337531.webp";
-const OWL_IMAGE = "https://storage.googleapis.com/dala-prod-public-storage/generated-images/d014d5ac-f5b7-4ada-980f-d89b8b31bd04/wise-owl-a52e9aae-1773515337484.webp";
-const MONKEY_IMAGE = "https://storage.googleapis.com/dala-prod-public-storage/generated-images/d014d5ac-f5b7-4ada-980f-d89b8b31bd04/monkey-and-crocodile-dcfcb142-1773515337272.webp";
-const RABBIT_IMAGE = "https://storage.googleapis.com/dala-prod-public-storage/generated-images/d014d5ac-f5b7-4ada-980f-d89b8b31bd04/tortoise-and-rabbit-cb7334a6-1773515336764.webp";
-const HYENA_IMAGE = "https://storage.googleapis.com/dala-prod-public-storage/generated-images/d014d5ac-f5b7-4ada-980f-d89b8b31bd04/hyena-and-donkey-96157057-1773515336322.webp";
-const SOLOMON_IMAGE = "https://storage.googleapis.com/dala-prod-public-storage/generated-images/d014d5ac-f5b7-4ada-980f-d89b8b31bd04/solomon-enanaw-story-illustration-a0d8833a-1773516616511.webp";
+const LION_IMAGE = "https://storage.googleapis.com/dala-prod-public-storage/generated-images/d014d5ac-f5b7-4ada-980f-d89b8b31bd04/lion-and-mouse-v2-cdb5d9c6-1773517040053.webp";
+const OWL_IMAGE = "https://storage.googleapis.com/dala-prod-public-storage/generated-images/d014d5ac-f5b7-4ada-980f-d89b8b31bd04/wise-owl-7887c13f-1773517022676.webp";
+const MONKEY_IMAGE = "https://storage.googleapis.com/dala-prod-public-storage/generated-images/d014d5ac-f5b7-4ada-980f-d89b8b31bd04/monkey-and-crocodile-8b509063-1773517023265.webp";
+const RABBIT_IMAGE = "https://storage.googleapis.com/dala-prod-public-storage/generated-images/d014d5ac-f5b7-4ada-980f-d89b8b31bd04/rabbit-and-tortoise-ecc07b36-1773517029064.webp";
+const HYENA_IMAGE = "https://storage.googleapis.com/dala-prod-public-storage/generated-images/d014d5ac-f5b7-4ada-980f-d89b8b31bd04/hyena-and-donkey-31b4c5eb-1773517023246.webp";
+const SOLOMON_IMAGE = "https://storage.googleapis.com/dala-prod-public-storage/generated-images/d014d5ac-f5b7-4ada-980f-d89b8b31bd04/old-man-cartoon-320cbc89-1773517065500.webp";
+const GENERIC_BG = "https://storage.googleapis.com/dala-prod-public-storage/generated-images/d014d5ac-f5b7-4ada-980f-d89b8b31bd04/generic-story-bg-ea5539f2-1773517029002.webp";
 
 export const stories: Story[] = [
   {
@@ -17,7 +18,7 @@ export const stories: Story[] = [
     image: LION_IMAGE,
     content: `በአንድ ወቅት አንድ ትልቅ አንበሳ በጫካ ውስጥ ተኝቶ ነበር። አንበሳው እጅግ ኃይለኛና የእንስሳት ንጉሥ ነበር። በዚያው አካባቢ የምትኖር አንዲት ትንሽ አይጥ ደግሞ እየሮጠች ስትጫወት በድንገት አንበሳው አፍንጫ ላይ ወጣች።
 
-አንበሳው በድንገት ተነስቶ አይጧን በኃይለኛ ጥፍሮቹ ያዛትና ሊበላት ሲል። አይጥ "እባክህ ጌታዬ! አሁን አትብላኝ። አንድ ቀን እረዳሃለሁ" ብላ ለመነችው። አንበሳውም "አንቺ ትንሿ አይጥ እኔን ትልቁን ንጉሥ እንዴት ልትረጂኝ ትችያለሽ?" ብሎ እየሳቀ ለቀቃት።
+አንበሳው በድንገት ተነስቶ አይጧን በኃይለኛ ጥፍሮቹ ያዛትና ሊበላት ሲል። አይጥ "እባክህ ጌታዬ! አሁን አትብላኝ። አንድ ቀን እረዳሃለሁ" ብላ ለመነችው። አንበሳውም "አንቺ ትን῏ አይጥ እኔን ትልቁን ንጉሥ እንዴት ልትረጂኝ ትችያለሽ?" ብሎ እየሳቀ ለቀቃት።
 
 ከጥቂት ቀናት በኋላ አንበሳው በአዳኞች መረብ ውስጥ ወደቀ። መረቡ እጅግ ጠንካራ ስለነበረ አንበሳው ሊበጥሰው አልቻለም። በታላቅ ድምፅ ይጮህ ጀመር። አይጧ የአንበሳውን ጩኸት ሰምታ ሮጣ መጣች።
 
@@ -77,9 +78,9 @@ export const stories: Story[] = [
     image: HYENA_IMAGE,
     content: `ጅብና አህያ በአንድነት ጉዞ ጀመሩ። ጅቡ "መንገዱ ረጅም ስለሆነ አንዱ አንዱን እያዘለ እንሂድ" አላት። አህያዋም በጅቡ የዋህነት አምና ተስማማች።
 
-መጀመሪያ አህያዋ ጅቡን አዘለችው። ጅቡ ግን አህያዋን እያዘለችው ሳለ ጀርባዋን ይበላት ነበር። አህያዋም "ምንድን ነው የሚቆረጥመኝ?" ስትለው ጅቡ "አይ ኮርቻው እየጋለበ ነው" አላት።
+መጀመሪያ አህያዋ ጅቡን አዘለችው። ጅቡ ግን አህያዋን እያዘለችው ሳለ ጀርባዋን ይበላት ነበር። አህያዋም "ምንድነው የሚቆረጥመኝ?" ስትለው ጅቡ "አይ ኮርቻው እየጋለበ ነው" አላት።
 
-ጉዟቸው ቀጠለ። አህያዋ እየደከማትና እየቆሰለች መጣች። ጅቡ ግን በለላ ሁኔታ እየሳቀ "ገና ብዙ ይቀረናል" ይላት ነበር። አህያዋ የጅቡን ተንኮል ዘግይታ ተረዳች።
+ጉዟቸው ቀጠለ። አህያዋ እየደከማትና እየቆሰለች መጣች። ጅቡ ግን በሌላ ሁኔታ እየሳቀ "ገና ብዙ ይቀረናል" ይላት ነበር። አህያ የጅቡን ተንኮል ዘግይታ ተረዳች።
 
 በመጨረሻም አህያዋ መጓዝ አቅቷት ወደቀች። ጅቡም የፈለገውን አገኘ። ይህ ተረት "ከመጥፎ ጓደኛ ራስን መጠበቅ" እንደሚያስፈልግ ያስተምረናል።`
   },
@@ -92,9 +93,9 @@ export const stories: Story[] = [
     image: SOLOMON_IMAGE,
     content: `በአንድ ወቅት ሰለሞን እናናው የተባለ አንድ ደግ ሰው በደጋማው የኢትዮጵያ ክፍል ይኖር ነበር። ሰለሞን ለህፃናት ተረቶችን በመንገርና ጥበብን በማስተማር ይታወቃል።
 
-አንድ ቀን ሰለሞን በታላቅ ዛፍ ስር ተቀምጦ ሳለ፣ ልጆች መጥተው "እባክህ የጥበብ ምስጢር ምንድን ነው?" ብለው ጠየቁት። ሰለሞንም ፈገግ ብሎ እንዲህ አላቸው: "እውነተኛ ጥበብ በልባችሁ ውስጥ ያለውን መልካምነት ለሌሎች ማካፈል ነው።"
+አንድ ቀን ሰለሞን በታላቅ ዛፍ ስር ተቀምጦ ሳለ፤ ልጆች መጥተው "እባክህ የጥበብ ምስጢር ምንድነው?" ብለው ጠየቁት። ሰለሞንም ፈገግ ብሎ እንዲህ አላቸው: "እውነተኛ ጥበብ በልባችሁ ውስጥ ያለውን መልካምነት ለሌሎች ማካፈል ነው።"
 
-ሰለሞን ሁልጊዜም ልጆች በትምህርታቸው እንዲበረቱና ባህላቸውን እንዲወዱ ይመክራቸው ነበር። "ባህላችን የቤታችን መሰረት ነው፣ እውቀታችን ደግሞ ጣራው ነው" ይል ነበር።
+ሰለሞን ሁልጊዜም ልጆች በትምህርታቸው እንዲበረቱና ባህላቸውን እንዲወዱ ይመክራቸው ነበር። "ባህላችን የቤታችን መሰረት ነው፤ እውቀታችን ደግሞ ጣሪያው ነው" ይል ነበር።
 
 በመጨረሻም የሰለሞን እናናው ታሪኮች በመላው ሀገሪቱ ተሰሙ። ስሙም እንደ ደግነትና የጥበብ ምሳሌ ሆኖ እስከ ዛሬ ድረስ ይታወሳል። ህፃናትም የእሱን ተረቶች እየሰሙ በክብርና በመልካም ስነ-ምግባር አደጉ።`
   }
@@ -107,7 +108,7 @@ for (let i = 7; i <= 365; i++) {
     title: "የቀን " + i + " ተረት",
     category: "ጥበብ",
     moral: "ጥሩ ስነ-ምግባር ለህይወት መሰረት ነው",
-    image: "https://images.unsplash.com/photo-1547407139-3c921a66005c?auto=format&fit=crop&q=80&w=800",
+    image: GENERIC_BG,
     content: `በአንድ ወቅት በአንድ ውብ መንደር ውስጥ የሚኖር አንድ ታታሪ ልጅ ነበር። ይህ ልጅ ሁልጊዜ ጠዋት ተነስቶ ወላጆቹን ይረዳ ነበር።
 
 አንድ ቀን በመንገዱ ላይ ሲሄድ አንድ ሽማግሌ አገኘ። ሽማግሌውም "ልጄ ሆይ! በትጋትህና በትህትናህ ምክንያት ትልቅ ደረጃ ትደርሳለህ" አሉት።
