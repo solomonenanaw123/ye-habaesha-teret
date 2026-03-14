@@ -45,12 +45,12 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7]">
+    <div className="min-h-screen bg-[#FDFBF7] flex flex-col">
       <Toaster position="top-center" richColors />
       
       <Header onSearch={setSearchTerm} />
 
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 flex-grow">
         {!searchTerm && (
           <DailySpecial story={dailyStory} onRead={handleStorySelect} />
         )}
@@ -58,7 +58,7 @@ const App: React.FC = () => {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
           <div>
             <h2 className="text-3xl font-bold text-gray-900 font-serif">
-              {searchTerm ? `ፍለጋ፡ "${searchTerm}"` : 'ሁሉንም ተረቶች'}
+              {searchTerm ? `ፍለጋ፦ "${searchTerm}"` : 'ሁሉንም ተረቶች'}
             </h2>
             <p className="text-gray-500 mt-1">
               {searchTerm ? `${filteredStories.length} ተረቶች ተገኝተዋል` : '365 ቀናት - 365 ተረቶች'}
@@ -104,24 +104,24 @@ const App: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-100 py-16 mt-20">
+      <footer className="bg-white border-t border-gray-100 py-12 mt-20">
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-2 mb-6">
-             <div className="bg-[#008855] p-2.5 rounded-xl">
-                <Heart className="h-6 w-6 text-white fill-current" />
+             <div className="bg-[#008855] p-2 rounded-xl">
+                <Heart className="h-5 w-5 text-white fill-current" />
              </div>
-             <span className="text-2xl font-bold font-serif text-gray-800 tracking-tight">እትዬ</span>
+             <span className="text-xl font-bold font-serif text-gray-800 tracking-tight">ተረት ተረት</span>
           </div>
-          <p className="text-gray-500 max-w-lg mx-auto mb-8 text-lg">
-            ለኢትዮጵያ ህፃናት በየቀኑ አዳዲስና አስተማሪ ተረቶችን እናቀርባለን። ባሕላችንን ለቀጣዩ ትውልድ እናስተላልፍ።
+          <p className="text-gray-500 max-w-lg mx-auto mb-8">
+            ለኢትዮጵያ ህፃናት በየቀኑ አዳዲስና አስተማሪ ተረቶችን እናቀርባለን። ባህላችንን ለቀጣዩ ትውልድ እናስተላልፋለን።
           </p>
-          <div className="flex justify-center gap-6 mb-10">
-            <button className="text-gray-400 hover:text-[#008855] font-medium">ስለ እኛ</button>
-            <button className="text-gray-400 hover:text-[#008855] font-medium">የግላዊነት ፖሊሲ</button>
-            <button className="text-gray-400 hover:text-[#008855] font-medium">አግኙን</button>
+          <div className="flex justify-center gap-6 mb-8 text-sm">
+            <button className="text-gray-400 hover:text-[#008855] font-medium transition-colors">ስለ እኛ</button>
+            <button className="text-gray-400 hover:text-[#008855] font-medium transition-colors">የግላዊነት ፖሊሲ</button>
+            <button className="text-gray-400 hover:text-[#008855] font-medium transition-colors">አግኙን</button>
           </div>
-          <div className="text-sm text-gray-400 border-t border-gray-50 pt-8">
-            © {new Date().getFullYear()} ተረት ተረት - የኢትዮጵያ ህፃናት ተረቶች | በአማርኛ የተዘጋጀ
+          <div className="text-sm text-gray-400 border-t border-gray-50 pt-8 font-medium">
+            © 2026 ተረት ተረት - የኢትዮጵያ ህፃናት ተረቶች | በአማርኛ የተዘጋጀ
           </div>
         </div>
       </footer>
