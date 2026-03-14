@@ -1,0 +1,44 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@400;700;900&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@theme {
+  --font-serif: "Noto Serif Ethiopic", "Georgia", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+body {
+  @apply font-sans antialiased bg-[#FDFBF7] text-gray-900;
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: "Noto Serif Ethiopic", "Georgia", serif;
+}
+
+/* Custom scrollbar for clean look */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Kid-friendly animations */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* Drop cap styling enhancement */
+.first-letter\:text-8xl::first-letter {
+  font-family: "Noto Serif Ethiopic", serif;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Story card hover effects */
+.story-card-hover {
+  @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl;
+}
