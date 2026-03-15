@@ -8,4 +8,4 @@ export interface Story {
   dayOfYear: number;
 }
 
-export type Category = 'እንስሳት' | 'ጥበብ' | 'ጀግንነት' | 'ቤተሰብ';
+export type Category = 'ሁሉም' | 'እንስሳት' | 'ጥበብ' | 'ጀግኖች' | 'ተፈጥሮ' | 'ቤተሰብ';
